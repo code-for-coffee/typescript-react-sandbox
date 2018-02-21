@@ -1,5 +1,8 @@
 import * as React from "react";
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import {AccountModel} from '../models/AccountModel';
+import { ValidationError } from "class-validator";
 
 export interface HelloProps { 
   compiler: string; 
@@ -16,8 +19,8 @@ const onSuccess = () => {
   console.log('You win!');
 };
 
-const onError = () => {
-  console.log('You lose!');
+const onError = (err: ValidationError) => {
+  console.log('You lose!', err);
 };
 
 AccountModel.validate(kevin, onSuccess, onError);

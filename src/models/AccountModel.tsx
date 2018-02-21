@@ -16,9 +16,9 @@ export class AccountModel {
   static validate(account: AccountModel, onSuccess: any, onFail: any) {
     validate(account).then(errors => {
       if (errors.length > 0) {
-        onSuccess();
+        onFail(errors);
       } else {
-        onFail()
+        onSuccess()
       }
     })
   }
